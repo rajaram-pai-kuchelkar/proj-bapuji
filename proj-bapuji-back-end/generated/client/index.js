@@ -22,7 +22,7 @@ const {
   defineDmmfProperty,
   Public,
   getRuntime
-} = require('./runtime/library.js')
+} = require('./runtime/binary.js')
 
 
 const Prisma = {}
@@ -131,7 +131,7 @@ const config = {
       "fromEnvVar": null
     },
     "config": {
-      "engineType": "library"
+      "engineType": "binary"
     },
     "binaryTargets": [
       {
@@ -166,8 +166,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../generated/client\"\n  previewFeatures = [\"deno\"]\n  engineType      = \"library\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel tmas {\n  id    Int       @id @default(autoincrement())\n  title String    @db.VarChar(200)\n  link  String    @db.VarChar(300)\n  type  String    @db.VarChar(30)\n  dt    DateTime? @db.Date\n}\n",
-  "inlineSchemaHash": "56e9965dcbd8774dde20d9960f8df48eae1b4aa662ba202ce73eb1c3900ec2e2",
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../generated/client\"\n  previewFeatures = [\"deno\"]\n  engineType      = \"binary\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel tmas {\n  id    Int       @id @default(autoincrement())\n  title String    @db.VarChar(200)\n  link  String    @db.VarChar(300)\n  type  String    @db.VarChar(30)\n  dt    DateTime? @db.Date\n}\n",
+  "inlineSchemaHash": "7f1a41a0c811f838e95b6683ee519432c60326632779f9f169e1d9d0f57647ee",
   "copyEngine": true
 }
 
@@ -193,7 +193,7 @@ defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = undefined
 
 
-const { warnEnvConflicts } = require('./runtime/library.js')
+const { warnEnvConflicts } = require('./runtime/binary.js')
 
 warnEnvConflicts({
     rootEnvPath: config.relativeEnvPaths.rootEnvPath && path.resolve(config.dirname, config.relativeEnvPaths.rootEnvPath),
@@ -205,8 +205,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-darwin.dylib.node");
-path.join(process.cwd(), "generated/client/libquery_engine-darwin.dylib.node")
+path.join(__dirname, "query-engine-darwin");
+path.join(process.cwd(), "generated/client/query-engine-darwin")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "generated/client/schema.prisma")
