@@ -166,9 +166,9 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../generated/client\"\n  previewFeatures = [\"deno\"]\n  engineType      = \"binary\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel tmas {\n  id    Int       @id @default(autoincrement())\n  title String    @db.VarChar(200)\n  link  String    @db.VarChar(300)\n  type  String    @db.VarChar(30)\n  dt    DateTime? @db.Date\n}\n",
-  "inlineSchemaHash": "7f1a41a0c811f838e95b6683ee519432c60326632779f9f169e1d9d0f57647ee",
-  "copyEngine": true
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../generated/client\"\n  previewFeatures = [\"deno\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel tmas {\n  id    Int       @id @default(autoincrement())\n  title String    @db.VarChar(200)\n  link  String    @db.VarChar(300)\n  type  String    @db.VarChar(30)\n  dt    DateTime? @db.Date\n}\n",
+  "inlineSchemaHash": "a4557e007777e8f6c072d522defac89a65fc803f43ada7a13b9ae65759d43b88",
+  "copyEngine": false
 }
 
 const fs = require('fs')
@@ -204,9 +204,3 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
-// file annotations for bundling tools to include these files
-path.join(__dirname, "query-engine-darwin");
-path.join(process.cwd(), "generated/client/query-engine-darwin")
-// file annotations for bundling tools to include these files
-path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "generated/client/schema.prisma")
