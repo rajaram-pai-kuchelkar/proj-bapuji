@@ -1,0 +1,18 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../generated/client"
+  previewFeatures = ["deno"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model tmas {
+  id    Int       @id @default(autoincrement())
+  title String    @db.VarChar(200)
+  link  String    @db.VarChar(300)
+  type  String    @db.VarChar(30)
+  dt    DateTime? @db.Date
+}
